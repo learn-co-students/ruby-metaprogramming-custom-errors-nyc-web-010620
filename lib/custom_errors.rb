@@ -7,7 +7,16 @@ class Person
 
   def get_married(person)
     self.partner = person
-    person.partner = self
+
+    unless person.class == Person
+      begin
+        raise NoMethodError
+      rescue => exception
+        puts "Needs to be an Instance to assign a partner to"
+      end
+    else
+      person.partner = self
+    end
   end
 
 end
